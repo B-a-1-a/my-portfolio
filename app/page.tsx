@@ -1,3 +1,6 @@
+"use client"; // This tells Next.js to treat this component as a Client Component
+
+import { useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -5,42 +8,91 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { SVGProps } from "react";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, XIcon } from "lucide-react";
 
 export default function Home() {
+
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <div className="flex flex-col min-h-[100dvh]">
-        
-        <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
+
+      <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
         <Link href="#" className="text-2xl font-bold" prefetch={false}>
           Bala Shukla
         </Link>
         <nav className="hidden md:flex gap-6">
-          <Link href="#" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
+          <Link href="#about" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
             About
           </Link>
-          <Link href="#" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
+          <Link href="#education" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
             Education
           </Link>
-          <Link href="#" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
+          <Link href="#work" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
             Experiences
           </Link>
-          <Link href="#" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
+          <Link href="#projects" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
             Projects
           </Link>
-          <Link href="#" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
+          <Link href="#contact" className="hover:underline underline-offset-4 transition-colors" prefetch={false}>
             Contact
           </Link>
         </nav>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <MenuIcon className="w-6 h-6" />
+
+        {/* Mobile Menu Button */}
+        <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? (
+            <XIcon className="w-6 h-6" /> // Close icon when the menu is open
+          ) : (
+            <MenuIcon className="w-6 h-6" /> // Hamburger icon when the menu is closed
+          )}
           <span className="sr-only">Toggle menu</span>
         </Button>
+
+              {/* Mobile Menu (visible only when isMobileMenuOpen is true) */}
+      {isMobileMenuOpen && (
+        <nav className="md:hidden bg-primary text-primary-foreground px-6 py-4">
+          <ul className="flex flex-col gap-4">
+            <li>
+              <Link href="#about" className="hover:underline" onClick={toggleMobileMenu}>
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="#education" className="hover:underline" onClick={toggleMobileMenu}>
+                Education
+              </Link>
+            </li>
+            <li>
+              <Link href="#work" className="hover:underline" onClick={toggleMobileMenu}>
+                Experiences
+              </Link>
+            </li>
+            <li>
+              <Link href="#projects" className="hover:underline" onClick={toggleMobileMenu}>
+                Projects
+              </Link>
+            </li>
+            <li>
+              <Link href="#contact" className="hover:underline" onClick={toggleMobileMenu}>
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
+
       </header>
+
 
       <main className="flex-1 py-12 px-6 md:px-12 lg:px-24">
 
-<section id="about" className="mb-12">
+        <section id="about" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
           <h2 className="text-3xl font-bold mb-4">About</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -55,19 +107,19 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <img
+              {/* <img
                 src="/placeholder.svg"
                 width={400}
                 height={400}
                 alt="Abhyudaya Shukla"
                 className="rounded-lg object-cover"
                 style={{ aspectRatio: "400/400", objectFit: "cover" }}
-              />
+              /> */}
             </div>
           </div>
         </section>
 
-        <section id="education" className="mb-12">
+        <section id="education" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
           <h2 className="text-3xl font-bold mb-4">Education and Certs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -96,7 +148,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="mb-12">
+        <section id="work" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
           <h2 className="text-3xl font-bold mb-4">Work Experience</h2>
           <div className="space-y-8">
             <div>
@@ -117,18 +169,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projects" className="mb-12">
+        {/* TODO! ADD IMAGES */}
+        <section id="projects" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
           <h2 className="text-3xl font-bold mb-4">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
-              <img
+              {/*  <img
                 src="/placeholder.svg"
                 width={400}
                 height={300}
                 alt="AI College Counselor"
                 className="rounded-lg object-cover mb-4"
                 style={{ aspectRatio: "400/300", objectFit: "cover" }}
-              />
+              /> */}
               <h3 className="text-xl font-bold mb-2">AI College Counselor</h3>
               <p className="mb-4">
                 Built using LangChain and RAG, created an AI-based tool to counsel students on college admissions using dynamic conversation models.
@@ -136,19 +189,20 @@ export default function Home() {
               <div className="flex gap-2">
                 <Badge variant="outline">Python</Badge>
                 <Badge variant="outline">LangChain</Badge>
-                <Badge variant="outline">Chroma</Badge>
+                <Badge variant="outline">Chroma Vector Store</Badge>
+                <Badge variant="outline">RAG</Badge>
               </div>
             </div>
 
             <div>
-              <img
+              {/* <img
                 src="/placeholder.svg"
                 width={400}
                 height={300}
                 alt="Project 2"
                 className="rounded-lg object-cover mb-4"
                 style={{ aspectRatio: "400/300", objectFit: "cover" }}
-              />
+              /> */}
               <h3 className="text-xl font-bold mb-2">Web Solutions for Local Businesses</h3>
               <p className="mb-4">
                 Developed highly responsive and optimized websites for local businesses, resulting in substantial traffic growth and customer satisfaction.
@@ -162,7 +216,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="mb-12">
+        <section id="contact" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
           <h2 className="text-3xl font-bold mb-4">Contact</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -174,7 +228,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <PhoneIcon className="w-5 h-5" />
-                  <span>+1 (563) 726-5987</span>
+                  <span>+1 (608) 616-9530</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <LinkedinIcon className="w-5 h-5" />
@@ -191,12 +245,13 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <form className="space-y-4">
+              {/* TODO! Add send email */}
+              {/* <form className="space-y-4">
                 <Input type="text" placeholder="Name" className="w-full" />
                 <Input type="email" placeholder="Email" className="w-full" />
                 <Textarea placeholder="Message" className="w-full" rows={5} />
                 <Button type="submit" className="w-full">Send Message</Button>
-              </form>
+              </form> */}
             </div>
           </div>
         </section>
