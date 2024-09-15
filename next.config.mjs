@@ -10,6 +10,9 @@ export default {
     distDir: 'out',
     eslint: {
         ignoreDuringBuilds: true,
-      },
+    },
+    images: {
+        unoptimized: true,
+    },
   };
   

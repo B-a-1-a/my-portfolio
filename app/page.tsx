@@ -9,6 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { SVGProps } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
+import Image from "next/image";
+
+
 
 export default function Home() {
 
@@ -107,14 +110,14 @@ export default function Home() {
               </p>
             </div>
             <div>
-              {/* <img
-                src="/placeholder.svg"
+              <img
+                src="/public/photo.png"
                 width={400}
                 height={400}
                 alt="Abhyudaya Shukla"
                 className="rounded-lg object-cover"
                 style={{ aspectRatio: "400/400", objectFit: "cover" }}
-              /> */}
+              />
             </div>
           </div>
         </section>
