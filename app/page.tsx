@@ -100,7 +100,7 @@ export default function Home() {
                 Hi &#128075;, I'm Bala Shukla, a sophomore at the University of Wisconsin-Madison, majoring in Computer Science & Data Science. I’m passionate about machine learning, cloud computing, and app development.
               </p>
               <p className="mb-4">
-                I have experience in both frontend and backend development, cloud architectures, and have led projects that deliver real-world solutions. I am profficient in Python, Java, Web Dev with React, Django and Other Frameworks, Popuar stacks like MERN and bunch more. I'm always excited to work on new challenges and solve problems using technology.
+                I have experience in both frontend and backend development, cloud architectures, and have led projects that deliver real-world solutions. I am profficient in Python, Java, Web Dev with React, Django and Other Frameworks, Popular stacks like MERN and bunch more. I'm always excited to work on new challenges and solve problems using technology.
               </p>
               <p>
                 In my free time, I love making fun but functional mini-projects and continuously improving my skills in machine learning and app development.
