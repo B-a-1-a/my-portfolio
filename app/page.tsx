@@ -95,32 +95,33 @@ export default function Home() {
 
       <main className="flex-1 py-12 px-6 md:px-12 lg:px-24">
 
-        <section id="about" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
-          <h2 className="text-3xl font-bold mb-4">About</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <p className="mb-4">
-                Hi &#128075;, I'm Bala Shukla, a sophomore at the University of Wisconsin-Madison, majoring in Computer Science & Data Science. I’m passionate about machine learning, cloud computing, and app development.
-              </p>
-              <p className="mb-4">
-                I have experience in both frontend and backend development, cloud architectures, and have led projects that deliver real-world solutions. I am profficient in Python, Java, Web Dev with React, Django and Other Frameworks, Popular stacks like MERN and bunch more. I'm always excited to work on new challenges and solve problems using technology.
-              </p>
-              <p>
-                In my free time, I love making fun but functional mini-projects and continuously improving my skills in machine learning and app development.
-              </p>
-            </div>
-            <div>
-              {/* <img
-                src="/public/photo.png"
-                width={400}
-                height={400}
-                alt="Abhyudaya Shukla"
-                className="rounded-lg object-cover"
-                style={{ aspectRatio: "400/400", objectFit: "cover" }}
-              /> */}
-            </div>
-          </div>
-        </section>
+      <section id="about" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
+  <h2 className="text-3xl font-bold mb-4">About</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <p className="mb-4">
+        Hi &#128075;, I'm Bala Shukla, a sophomore at the University of Wisconsin-Madison, majoring in Computer Science & Data Science. I’m passionate about machine learning, cloud computing, and app development.
+      </p>
+      <p className="mb-4">
+        I have experience in both frontend and backend development, cloud architectures, and have led projects that deliver real-world solutions. I am profficient in Python, Java, Web Dev with React, Django and Other Frameworks, Popular stacks like MERN and bunch more. I'm always excited to work on new challenges and solve problems using technology.
+      </p>
+      <p>
+        In my free time, I love making fun but functional mini-projects and continuously improving my skills in machine learning and app development.
+      </p>
+    </div>
+    <div>
+      <img
+        src="/photo.avif"
+        width={400}
+        height={400}
+        alt="Abhyudaya Shukla"
+        className="rounded-lg object-cover transform transition-transform duration-300 ease-in-out hover:rotate-3 hover:scale-105 float-right"
+        style={{ aspectRatio: "400/400", objectFit: "cover" }}
+      />
+    </div>
+  </div>
+</section>
+
 
         <section id="education" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
           <h2 className="text-3xl font-bold mb-4">Education and Certs</h2>
