@@ -1,6 +1,6 @@
 "use client"; // This tells Next.js to treat this component as a Client Component
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -16,11 +16,49 @@ import Image from "next/image";
 export default function Home() {
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+    // Toggle mobile menu
 
-  // Toggle mobile menu
+  // Refs for sections
+  const aboutRef = useRef(null);
+  const educationRef = useRef(null);
+  const workRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  useEffect(() => {
+    const sections = [
+      aboutRef.current,
+      educationRef.current,
+      workRef.current,
+      projectsRef.current,
+      contactRef.current,
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-slideUp");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -57,73 +95,73 @@ export default function Home() {
           <span className="sr-only">Toggle menu</span>
         </Button>
 
-              {/* Mobile Menu (visible only when isMobileMenuOpen is true) */}
-      {isMobileMenuOpen && (
-        <nav className="md:hidden bg-primary text-primary-foreground px-6 py-4">
-          <ul className="flex flex-col gap-4">
-            <li>
-              <Link href="#about" className="hover:underline" onClick={toggleMobileMenu}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="#education" className="hover:underline" onClick={toggleMobileMenu}>
-                Education
-              </Link>
-            </li>
-            <li>
-              <Link href="#work" className="hover:underline" onClick={toggleMobileMenu}>
-                Experiences
-              </Link>
-            </li>
-            <li>
-              <Link href="#projects" className="hover:underline" onClick={toggleMobileMenu}>
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link href="#contact" className="hover:underline" onClick={toggleMobileMenu}>
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      )}
+        {/* Mobile Menu (visible only when isMobileMenuOpen is true) */}
+        {isMobileMenuOpen && (
+          <nav className="md:hidden bg-primary text-primary-foreground px-6 py-4">
+            <ul className="flex flex-col gap-4">
+              <li>
+                <Link href="#about" className="hover:underline" onClick={toggleMobileMenu}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="#education" className="hover:underline" onClick={toggleMobileMenu}>
+                  Education
+                </Link>
+              </li>
+              <li>
+                <Link href="#work" className="hover:underline" onClick={toggleMobileMenu}>
+                  Experiences
+                </Link>
+              </li>
+              <li>
+                <Link href="#projects" className="hover:underline" onClick={toggleMobileMenu}>
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="#contact" className="hover:underline" onClick={toggleMobileMenu}>
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        )}
 
       </header>
 
 
-      <main className="flex-1 py-12 px-6 md:px-12 lg:px-24">
+      <main className="flex-1 py-12 px-6 md:px-12 lg:px-24 section-slide-up">
 
-      <section id="about" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
-  <h2 className="text-3xl font-bold mb-4">About</h2>
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <div>
-      <p className="mb-4">
-        Hi &#128075;, I'm Bala Shukla, a sophomore at the University of Wisconsin-Madison, majoring in Computer Science & Data Science. I’m passionate about machine learning, cloud computing, and app development.
-      </p>
-      <p className="mb-4">
-        I have experience in both frontend and backend development, cloud architectures, and have led projects that deliver real-world solutions. I am profficient in Python, Java, Web Dev with React, Django and Other Frameworks, Popular stacks like MERN and bunch more. I'm always excited to work on new challenges and solve problems using technology.
-      </p>
-      <p>
-        In my free time, I love making fun but functional mini-projects and continuously improving my skills in machine learning and app development.
-      </p>
-    </div>
-    <div>
-      <img
-        src="/photo.avif"
-        width={400}
-        height={400}
-        alt="Abhyudaya Shukla"
-        className="rounded-lg object-cover transform transition-transform duration-300 ease-in-out hover:rotate-3 hover:scale-105 float-right"
-        style={{ aspectRatio: "400/400", objectFit: "cover" }}
-      />
-    </div>
-  </div>
-</section>
+        <section id="about" ref={aboutRef} className="opacity-0 mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out section-slide-up">
+          <h2 className="text-3xl font-bold mb-4">About</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <p className="mb-4">
+                Hi &#128075;, I'm Bala Shukla, a sophomore at the University of Wisconsin-Madison, majoring in Computer Science & Data Science. I’m passionate about machine learning, cloud computing, and app development.
+              </p>
+              <p className="mb-4">
+                I have experience in both frontend and backend development, cloud architectures, and have led projects that deliver real-world solutions. I am profficient in Python, Java, Web Dev with React, Django and Other Frameworks, Popular stacks like MERN and bunch more. I'm always excited to work on new challenges and solve problems using technology.
+              </p>
+              <p>
+                In my free time, I love making fun but functional mini-projects and continuously improving my skills in machine learning and app development.
+              </p>
+            </div>
+            <div>
+              <img
+                src="/photo.avif"
+                width={400}
+                height={400}
+                alt="Abhyudaya Shukla"
+                className="rounded-lg object-cover transform transition-transform duration-300 ease-in-out hover:rotate-3 hover:scale-105 float-right"
+                style={{ aspectRatio: "400/400", objectFit: "cover" }}
+              />
+            </div>
+          </div>
+        </section>
 
 
-        <section id="education" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
+        <section id="education" ref={educationRef} className="opacity-0 mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out section-slide-up">
           <h2 className="text-3xl font-bold mb-4">Education and Certs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -152,7 +190,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
+        <section id="work" ref={workRef} className="opacity-0 mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out section-slide-up">
           <h2 className="text-3xl font-bold mb-4">Work Experience</h2>
           <div className="space-y-8">
             <div>
@@ -174,7 +212,7 @@ export default function Home() {
         </section>
 
         {/* TODO! ADD IMAGES */}
-        <section id="projects" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
+        <section id="projects" ref={projectsRef} className="opacity-0 mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out section-slide-up">
           <h2 className="text-3xl font-bold mb-4">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
@@ -220,7 +258,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out">
+        <section id="contact" ref={contactRef} className="opacity-0 mb-12 p-6 md:p-8 lg:p-12 border border-blue-200 rounded-lg hover:shadow-lg hover:shadow-blue-300 transition-shadow duration-300 ease-in-out section-slide-up">
           <h2 className="text-3xl font-bold mb-4">Contact</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
